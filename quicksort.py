@@ -39,7 +39,7 @@ class Quicksort(object):
         arranjo = copy(self.arranjo)
         inicio = 0
         fim = len(arranjo) - 1
-        self.quicksortHoare(arranjo, inicio, fim)
+        self.quicksortLomuto(arranjo, inicio, fim)
         print(arranjo)
 
 
@@ -54,7 +54,12 @@ class Quicksort(object):
 
     def quicksortLomuto(self, arranjo, inicio, fim):
         """Executa a ordenacao utilizando o particionamento de Lomuto."""
-        pass
+        j = 0
+        if inicio < fim:
+            j = self.particionamentoLomuto(arranjo, inicio, fim)
+            self.quicksortLomuto(arranjo, inicio, j - 1)
+            self.quicksortLomuto(arranjo, j + 1, fim)
+
 
     def particionamentoHoare(self, arranjo, inicio, fim):
         """Particiona o arranjo utilizando o metodo de Hoare."""
@@ -76,6 +81,18 @@ class Quicksort(object):
         arranjo[j] = pivo
         return j
 
+
     def particionamentoLomuto(self, arranjo, inicio, fim):
         """Particiona o arranjo utilizando o metodo de Lomuto."""
-        pass
+        pivo = arranjo[fim]
+        i = inicio - 1
+        for j in range(inicio, fim):
+            if arranjo[j] <= pivo:
+                i += 1
+                temp = arranjo[i]
+                arranjo[i] = arranjo[j]
+                arranjo[j] = temp
+        temp = arranjo[i + 1]
+        arranjo[i + 1] = arranjo[fim]
+        arranjo[fim] = temp
+        return i + 1
