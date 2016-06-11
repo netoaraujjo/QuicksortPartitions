@@ -7,10 +7,17 @@
 from quicksort import *
 import sys
 
-def main(tamanho):
-    qs = Quicksort(tamanho)
+def main(num_repeticoes):
+
+    tamanhos = [100, 500, 1000, 5000, 30000, 80000, 100000, 150000, 200000]
+    # tamanhos = [10, 50, 100, 150, 200, 500]
+    # tamanhos = [10, 20]
+
+    qs = Quicksort(num_repeticoes, tamanhos)
+
+    qs.executa()
 
 
 if __name__ == '__main__':
-    tamanho = int(sys.argv[1])
-    main(tamanho)
+    num_repeticoes = int(sys.argv[1])
+    main(num_repeticoes)
